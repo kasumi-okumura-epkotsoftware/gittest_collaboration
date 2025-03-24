@@ -1,6 +1,6 @@
 # 複数人でgitの練習をやってみよう
 
-新人研修git編（https://epkotsoftware.github.io/training/git/） を複数人で行った場合の流れをおおまかにまとめています。
+新人研修git編を複数人で行った場合の流れをおおまかにまとめています。
 
 
 目標
