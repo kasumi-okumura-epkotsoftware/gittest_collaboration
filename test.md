@@ -14,12 +14,12 @@
     Initialize this repository with: 「Add a README file」のみチェック
     「Create repository」ボタンをクリック
 
-    
+
     ・developブランチ作成
 
     リポジトリのメインページに移動 (https://github.com/{★自身のユーザー名}/training-git/)
     ブランチ名に「develop」を入力し、「Create branch: develop from 'main'」をクリック
-  ![alt text](<スクリーンショット 2025-03-19 180219.png>)
+  ![alt text](<images/スクリーンショット 2025-03-19 180219.png>)
 
     ・ブランチ設定
 
@@ -67,19 +67,25 @@
     githubに追加したファイルがあるか確認する
 
 
-    ◆子側
+◆子側
+
     [github]
     ・子側のデータダウンロード
 
     githubからファイルをダウンロードする
     「< >code」ボタンを選択してHTTPSのURLをコピーまたは親側の人にURLを教えてもらう
+
     [vscode]
     vscodeのターミナルに
     git clone コピーしたURL　を入力
     「ファイル」タブから「フォルダーを開く」でダウンロードしてきたフォルダを開く
-    ・featureブランチの作成（developブランチからfeatureブランチを新規作成してブランチを移動している）
-    git checkout feature/ブランチ名　を入力
-    ターミナルのディレクトリ名がdevelopからfeature/ブランチ名に変わったのを確認
+
+
+    ・featureブランチの作成（developブランチからfeatureブランチを新規作成してブランチを移動する）
+    git checkout -b feature/ブランチ名　を入力
+    ターミナルのディレクトリ名（青色の部分）がdevelopからfeature/ブランチ名に変わったのを確認
+  ![alt text](<images/スクリーンショット 2025-03-24 172059.png>)
+
     git branch を入力しても確認できる（任意）
 
 
@@ -91,15 +97,92 @@
     git push　を入力してリモートリポジトリに反映させる（
     ※子側にgit pushの権限がないとエラーが出る
     エラーが出た場合は、親側がgithubから子側のgithubユーザー名を検索して権限を与える
+■親側（権限付与のエラーが出た場合）
 
-    git push　
-    （上記エラーが出た場合は認証後にgit push --set-upstream origin feature/ブランチ名）
-    を入力してリモートリポジトリに反映させる
+    [github]
+    「Settings」タブをクリック
+    サイドメニューの「collaborators」をクリック
+    「add people」から任意のアカウント名を検索、追加する
+  ![alt text](<images/スクリーンショット 2025-03-21 104539.png>)
+
+
+■子側
+
+    ・エラーの続き
+
+    [github]
+    右上のメールから、権限許可の認証を承認する
+
+
+    ・エラー解消後またはエラーが出なかった場合
+
+    [vscode]
+    ※最初のみ　git push --set-upstream origin feature/ブランチ名
+    を入力してリモートリポジトリに反映させる　以後　git push　のみで可
+
     [github]
     feature/ブランチ名のブランチに追加したファイルがあるか確認する
 
 
     ・プルリクエストを送る
+
+■親側
+・プルリクエストを確認し、merge後にfeatureブランチ（github側）を削除する
+
+◆子側
+
+
+    [vscode]
+    ・ローカル（vscode側）のfeatureブランチを削除する
+    git checkout develop　を入力してdevelopブランチに移動する
+    git branch -b feature/ブランチ名　を入力してブランチを削除する
+    git branch　を入力してfeature/ブランチ名が削除されているか確認（任意）
+
+    ・ローカルリポジトリのdevelopブランチを最新の状態に合わせる（任意）
+    git pull　を入力する
+
+    [github]
+    feature/ブランチ名が削除されているか確認
+
+
+■親側
+
+    [vscode]
+    ・developブランチを最新の状態にする
+    git pull　を入力
+
+    ・featureブランチの作成（developブランチからfeatureブランチを新規作成してブランチを移動する）
+    git checkout feature/ブランチ名　を入力
+    ターミナルのディレクトリ名がdevelopからfeature/ブランチ名に変わったのを確認
+    git branch を入力しても確認できる（任意）
+
+    [vscode]
+
+    ・テストファイルの追加編集
+    テスト用のファイルに任意の文章を追加、保存
+    git status を入力して、現在の状態を確認する（任意）
+    git add ファイル名　を入力して任意のファイルをステージングする
+    git commit -m "任意の編集メッセージを記載"　を入力する
+    git push　を入力してリモートリポジトリに反映させる（
+    ※最初のみ　git push --set-upstream origin feature/ブランチ名
+    を入力してリモートリポジトリに反映させる　以後　git push　のみで可
+
+    [github]
+    feature/ブランチ名のブランチに追加したファイルがあるか確認する
+
+   ・プルリクエストを送る
+
+    [vscode]
+    ・ローカル（vscode側）のfeatureブランチを削除する
+    git checkout develop　を入力してdevelopブランチに移動する
+    git branch -b feature/ブランチ名　を入力してブランチを削除する
+    git branch　を入力してfeature/ブランチ名が削除されているか確認（任意）
+
+    ・ローカルリポジトリのdevelopブランチを最新の状態に合わせる（任意）
+    git pull　を入力する
+
+    [github]
+    feature/ブランチ名が削除されているか確認
 
 
 
