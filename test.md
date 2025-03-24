@@ -1,3 +1,6 @@
+# 子側と親側の両方がブランチの作成、削除するまでの流れ(1周分)
+
+
 ■親側
 
     [github]
@@ -82,6 +85,7 @@
 
 
     ・featureブランチの作成（developブランチからfeatureブランチを新規作成してブランチを移動する）
+
     git checkout -b feature/ブランチ名　を入力
     ターミナルのディレクトリ名（青色の部分）がdevelopからfeature/ブランチ名に変わったのを確認
   ![alt text](<images/スクリーンショット 2025-03-24 172059.png>)
@@ -90,6 +94,7 @@
 
 
     ・テストファイルの追加編集
+
     テスト用のファイルに任意の文章を追加、保存
     git status を入力して、現在の状態を確認する（任意）
     git add ファイル名　を入力して任意のファイルをステージングする
@@ -106,15 +111,15 @@
   ![alt text](<images/スクリーンショット 2025-03-21 104539.png>)
 
 
-■子側
+◆子側
 
     ・エラーの続き
 
     [github]
-    右上のメールから、権限許可の認証を承認する
+    右上のメールアイコンから、権限許可の認証を承認する
 
 
-    ・エラー解消後またはエラーが出なかった場合
+    ・エラー解消またはエラーが出なかった場合
 
     [vscode]
     ※最初のみ　git push --set-upstream origin feature/ブランチ名
@@ -122,23 +127,42 @@
 
     [github]
     feature/ブランチ名のブランチに追加したファイルがあるか確認する
-
+  ![alt text](<images/スクリーンショット 2025-03-24 174106.png>)
 
     ・プルリクエストを送る
 
+    リポジトリのメインページに移動
+    「Pull requests」タブをクリック
+    「New pull request」ボタンをクリック
+    ブランチを以下のように選択し、「Create pull request」をクリック
+    「base: develop」 ← 「compare: feature/ブランチ名」
+    「Open a pull request」画面で「Create pull request」をクリック
+
+  ![alt text](<images/スクリーンショット 2025-03-24 180142.png>)
+
+
 ■親側
-・プルリクエストを確認し、merge後にfeatureブランチ（github側）を削除する
+
+    ・プルリクエストを確認し、merge後にfeatureブランチ（github側）を削除する
+
+    [github]
+      Merge pull request」ボタンをクリック
+    「Confirm merge」ボタンをクリックし、マージを行う。
+    「Delete branch」ボタンをクリックし、Featureブランチを削除
+   ![alt text](<images/スクリーンショット 2025-03-24 110946.png>)
+
 
 ◆子側
 
+    ・ローカル（vscode側）のfeatureブランチを削除する
 
     [vscode]
-    ・ローカル（vscode側）のfeatureブランチを削除する
     git checkout develop　を入力してdevelopブランチに移動する
-    git branch -b feature/ブランチ名　を入力してブランチを削除する
+    git branch -d feature/ブランチ名　を入力してブランチを削除する
     git branch　を入力してfeature/ブランチ名が削除されているか確認（任意）
 
     ・ローカルリポジトリのdevelopブランチを最新の状態に合わせる（任意）
+
     git pull　を入力する
 
     [github]
@@ -147,18 +171,21 @@
 
 ■親側
 
-    [vscode]
     ・developブランチを最新の状態にする
+
+    [vscode]
     git pull　を入力
 
     ・featureブランチの作成（developブランチからfeatureブランチを新規作成してブランチを移動する）
-    git checkout feature/ブランチ名　を入力
+
+    git checkout -b feature/ブランチ名　を入力
     ターミナルのディレクトリ名がdevelopからfeature/ブランチ名に変わったのを確認
     git branch を入力しても確認できる（任意）
 
     [vscode]
 
     ・テストファイルの追加編集
+
     テスト用のファイルに任意の文章を追加、保存
     git status を入力して、現在の状態を確認する（任意）
     git add ファイル名　を入力して任意のファイルをステージングする
@@ -170,12 +197,25 @@
     [github]
     feature/ブランチ名のブランチに追加したファイルがあるか確認する
 
-   ・プルリクエストを送る
+    ・プルリクエストを送る
+
+    リポジトリのメインページに移動
+    「Pull requests」タブをクリック
+    「New pull request」ボタンをクリック
+    ブランチを以下のように選択し、「Create pull request」をクリック
+    「base: develop」 ← 「compare: feature/ブランチ名」
+    「Open a pull request」画面で「Create pull request」をクリック
+
+    ・プルリクエストを確認し、merge後にfeatureブランチ（github側）を削除する
+
+    「Merge pull request」ボタンをクリック
+    「Confirm merge」ボタンをクリックし、マージを行う。
+    「Delete branch」ボタンをクリックし、Featureブランチを削除
 
     [vscode]
     ・ローカル（vscode側）のfeatureブランチを削除する
     git checkout develop　を入力してdevelopブランチに移動する
-    git branch -b feature/ブランチ名　を入力してブランチを削除する
+    git branch -d feature/ブランチ名　を入力してブランチを削除する
     git branch　を入力してfeature/ブランチ名が削除されているか確認（任意）
 
     ・ローカルリポジトリのdevelopブランチを最新の状態に合わせる（任意）
